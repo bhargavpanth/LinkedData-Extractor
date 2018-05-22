@@ -1,12 +1,13 @@
 /**
 Author : @bhargavpanth
+
 **/ 
 
 
 #include <Python.h>
 
 // Python Exception object
-static PyObject extractError*;
+static PyObject *extractError;
 
 static PyObject* extract(PyObject* self, PyObject *args) {
 
@@ -36,41 +37,24 @@ static PyObject* extract(PyObject* self, PyObject *args) {
 
 }
 
-/* Sample method to understand parsing double / int */
-
-static PyObject* add(PyObject* self, PyObject *args) {
-
-	double num_one, num_two;
-
-	double sts = 0;
-
-	if (!PyArg_ParseTuple(args, "dd", &num_one, &num_two))
-	{
-		return NULL;
-	}
-
-	sts = num_one + num_two;
-	
-	printf("%f\n", &sts);
-	
-	return Py_BuildValue("f", sts);
-}
-
 
 /*
-At the end creating all functions - a function table is required to be created
-set of method defenition -> function names
+	function table
+	set of method defenition -> function names
 */
 
 static PyMethodDef extract_methods[] = {
 	// "Python name",	C Funciton name,	argument_presentation,	description
 	{"extract", extract, METH_VARARGS, "extract a file content by passing the file path"},
 	
-	{"add", add, METH_VARARGS,"sample test file to add two numbers"},
 	/* Sentinal */
 	{NULL, NULL, 0, NULL}
 };
 
+
+/*
+	
+*/
 
 PyMODINIT_FUNC initextract(void)
 {
