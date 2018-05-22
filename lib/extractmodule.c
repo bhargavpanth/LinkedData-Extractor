@@ -9,7 +9,7 @@ Author : @bhargavpanth
 // Python Exception object
 static PyObject *extractError;
 
-static PyObject* extract(PyObject* self, PyObject *args) {
+static PyObject* LDExtract(PyObject* self, PyObject *args) {
 
 	const char* fname;
 
@@ -28,7 +28,9 @@ static PyObject* extract(PyObject* self, PyObject *args) {
 	else
 	{
 		// Check if the file path exists
-		printf("%s\n", &fname);
+		printf("%s\n", fname);
+		/* read and extract file content */
+
 		sts = 21;
 
 	} 
