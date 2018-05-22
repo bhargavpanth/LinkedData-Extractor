@@ -10,4 +10,7 @@
 
 ### How to run?
 
-* Soon to come
+* ```git clone https://github.com/bhargavpanth/LinkedData-Extractor.git```
+* ```python setup.py build```
+* ```python setup.py install``` use ```sudo``` if required
+

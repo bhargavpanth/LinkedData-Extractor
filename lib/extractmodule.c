@@ -6,7 +6,7 @@ Author : @bhargavpanth
 #include <Python.h>
 
 // Python Exception object
-static PyObject extractErr*
+static PyObject extractError*;
 
 static PyObject* extract(PyObject* self, PyObject *args) {
 
@@ -21,7 +21,7 @@ static PyObject* extract(PyObject* self, PyObject *args) {
 
 	if (strcmp(fname, "err") == 0)
 	{
-		PyErr_SetString(extractErr, "Argument not passed. Method expects file path argument");
+		PyErr_SetString(extractError, "Argument not passed. Method expects file path argument");
 		return NULL;
 	}
 	else
@@ -42,18 +42,18 @@ static PyObject* add(PyObject* self, PyObject *args) {
 
 	double num_one, num_two;
 
-	double sts = 0
+	double sts = 0;
 
-	if (!PyArg_ParseTuple(args, "d d", &num_one, &num_two))
+	if (!PyArg_ParseTuple(args, "dd", &num_one, &num_two))
 	{
 		return NULL;
 	}
 
 	sts = num_one + num_two;
 	
-	printf("%d\n", &sts);
+	printf("%f\n", &sts);
 	
-	return Py_BuildValue("d", sts);
+	return Py_BuildValue("f", sts);
 }
 
 
@@ -62,8 +62,30 @@ At the end creating all functions - a function table is required to be created
 set of method defenition -> function names
 */
 
-static PyMethodDef extractmod_methods[] = {
+static PyMethodDef extract_methods[] = {
 	// "Python name",	C Funciton name,	argument_presentation,	description
-	{"extract", extract, METH_VARARGS, "extract a file by passing the file path"}
-}
+	{"extract", extract, METH_VARARGS, "extract a file content by passing the file path"},
+	
+	{"add", add, METH_VARARGS,"sample test file to add two numbers"},
+	/* Sentinal */
+	{NULL, NULL, 0, NULL}
+};
 
+
+PyMODINIT_FUNC initextract(void)
+{
+	PyObject *m;
+	
+	m = Py_InitModule("extract", extract_methods);
+
+	if (m == NULL)
+	{
+		return;
+	}
+
+	extractError = PyErr_NewException("extract.error", NULL, NULL);
+
+	Py_INCREF(extractError);
+
+	PyModule_AddObject(m, "error", extractError);
+}
