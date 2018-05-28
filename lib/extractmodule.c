@@ -31,7 +31,7 @@ static PyObject* LDExtract(PyObject* self, PyObject *args) {
 		// Check if the file path exists
 		printf("Reading %s\n", fname);
 		/* read and extract file content */
-		read_from_file_open(fname, 250000);
+		read_from_file_open(fname);
 
 		sts = 21;
 
@@ -42,7 +42,29 @@ static PyObject* LDExtract(PyObject* self, PyObject *args) {
 }
 
 
-int read_from_file_open(char *filename,size_t size)
+int read_from_file_open(char *file_path)
+{
+	FILE * file_pointer;
+	
+	file_pointer = fopen(file_path, "r");
+	
+	char line[100];
+
+	while(!feof(file_pointer)){
+
+		fgets(line, 100, file_pointer);
+
+		puts(line);
+
+	}
+
+	fclose(file_pointer);
+
+	return 1;
+}
+
+
+/*int read_from_file_open(char *filename,size_t size)
 {
 	int fd;
 
@@ -91,7 +113,7 @@ int read_from_file_open(char *filename,size_t size)
   close(fd);
 
   return 1;
-}
+} */
 
 
 /*
