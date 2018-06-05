@@ -9,7 +9,7 @@ def mapper():
 	for each_line in sys.stdin:
 		# try to utf-8 encode
 		try:
-			encoded_line = each_line.decode("utf-8", "replace")
+			encoded_line = each_line.decode("utf-8", "ignore")
 		except Exception as e:
 			continue
 		else:
