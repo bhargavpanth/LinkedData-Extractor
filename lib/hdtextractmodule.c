@@ -64,58 +64,6 @@ int read_from_file_open(char *file_path)
 }
 
 
-/*int read_from_file_open(char *filename,size_t size)
-{
-	int fd;
-
-	long *buffer = (long*)malloc(size * sizeof(long));
-
-	fd = open(filename);
-
-	if (fd == -1)
-	{
-		printf("\nFile Open Unsuccessful\n");
-		exit (0);;
-	}
-
-	off_t chunk=0;
-	
-	lseek(fd,0,SEEK_SET);
-	
-	printf("\nCurrent Position%d\n",lseek(fd,size,SEEK_SET));
-	
-	while ( chunk < size )
-	{
-		printf ("the size of chunk read is  %d\n",chunk);
-   
-   		size_t readnow;
-   		
-   		readnow=read(fd,((char *)buffer)+chunk,1048576);
-		
-		if (readnow < 0 )
-     	{
-			printf("\nRead Unsuccessful\n");
-			
-			free (buffer);
-			
-			close (fd);
-			
-			return 0;
-		}
-
-		chunk=chunk+readnow;
-  }
-
-  printf("\nRead Successful\n");
-
-  free(buffer);
-
-  close(fd);
-
-  return 1;
-} */
-
-
 /*
 	function table
 	set of method defenition -> function names
