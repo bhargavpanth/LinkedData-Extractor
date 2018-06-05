@@ -7,6 +7,7 @@ def mapper():
 	# document = HDTDocument(os.path.append("../../data/LOD_a_lot_v1.hdt"))
 	# standard in - file line by line
 	for each_line in sys.stdin:
+		# try to utf-8 encode - 
 		data = each_line.strip().split(' ')
 		
 		if len(data) == 4:

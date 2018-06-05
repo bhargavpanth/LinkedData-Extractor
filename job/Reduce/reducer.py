@@ -2,24 +2,42 @@
 import sys
 from urlparse import urlparse
 
+
 def reducer():
 
 	key = None
+	counter = 0
 
 	for each_line in sys.stdin:
+
 		data = each_line.strip().split('\t')
 
 		if len(data) != 3:
 			continue
 
 		Subject, Predicate, Object = data
-		domain_subject = return_url(Subject)
-		
 
+		subject_domain_name = return_url(Subject)
 
+		if subject_domain_name != False:
+			if key and key != subject_domain_name:
+				print "{0}\t{1}".format(key, counter, subject_domain_name, Object)
+				counter = 0
+
+		key = subject_domain_name
+		counter += 1
 
 
 def return_url(url):
-	parsed_uri = urlparse(url)
-	domain = '{uri.scheme}://{uri.netloc}/'.format(uri=parsed_uri)
-	return domain
+	if url.startswith('_'):
+		pass
+	else:
+		try:
+			parsed_uri = urlparse(url)
+			domain = '{uri.scheme}://{uri.netloc}/'.format(uri=parsed_uri)
+		except Exception as e:
+			return False
+		else:
+			return domain
+	
+	
