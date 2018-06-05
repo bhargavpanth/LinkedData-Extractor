@@ -9,7 +9,7 @@ def mapper():
 	for each_line in sys.stdin:
 		# try to utf-8 encode
 		try:
-			encoded_line = each_line.encode('utf-8')
+			encoded_line = each_line.decode("utf-8", "replace")
 		except Exception as e:
 			continue
 		else:
@@ -35,4 +35,3 @@ def mapper():
 				finally:
 					pass
 				print "{0}\t{1}\t{2}".format(sub, pred, obj)
-		
