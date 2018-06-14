@@ -17,18 +17,20 @@ def reducer():
 
 		Subject, Predicate, Object = data
 
-		subject_domain_name = return_url(Subject)
+		print "{0}\t{1}\t{2}".format(Subject, Predicate, Object)
 
-		if subject_domain_name != False:
-			if key and key != subject_domain_name:
-				print "{0}\t{1}\t{2}\t{3}".format(key, counter, subject_domain_name, Object)
-				counter = 0
+	# 	subject_domain_name = return_url(Subject)
 
-		key = subject_domain_name
-		counter += 1
+	# 	if subject_domain_name != False:
+	# 		if key and key != subject_domain_name:
+	# 			print "{0}\t{1}\t{2}\t{3}".format(key, counter, subject_domain_name, Object)
+	# 			counter = 0
 
-	if key != None:
-		print "{0}\t{1}\t{2}\t{3}".format(key, counter, subject_domain_name, Object)
+	# 	key = subject_domain_name
+	# 	counter += 1
+
+	# if key != None:
+	# 	print "{0}\t{1}\t{2}\t{3}".format(key, counter, subject_domain_name, Object)
 
 
 def return_url(url):
